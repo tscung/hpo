@@ -1,53 +1,60 @@
 <%@ include file="/jspf/execTaglibImports.jspf" %>
 <%@ include file="/jspf/execStandard.jspf" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>F5</title>
-<link href="<c:url value="/css/reset-min.css"/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<c:url value="/js/jquery.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/ddaccordion.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/cufon-yui.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/Frutiger_CE_55_Roman_400.font.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/Frutiger_CE_95_Ultra_Black_900.font.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/Frutiger_CE_55_Roman_italic_700.font.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/Frutiger_CE_45_Light_300.font.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/Frutiger_CE_45_Light_italic_700.font.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/onload.js"/>"></script>
-</head>
-<body>
-<div id="header"> <img class="logo" src="<c:url value="/images/logo.jpg"/>" width="350" height="92" /> <img class="decortop" src="<c:url value="/images/decor_topright.jpg"/>" width="165" height="65" /> </div>
-<div id="leftcol">
-  <ul class="nav">
-    <li><a href="<c:url value="/restricted/getHome.${ext}"/>" class="navactive">Home</a></li>
-    <li><a href="<c:url value="/restricted/getRegister.${ext}"/>">Register</a></li>
-    <li style="padding-top: 5px;">
-      <div class="subnavhead">Event Information</div>
-      <ul class="subnav">
-        <li><a href="<c:url value="/restricted/getAgenda.${ext}"/>" >agenda</a></li>
-        <li><a href="<c:url value="/restricted/getSpeakers.${ext}"/>">speaker profiles</a></li>
-        <li><a href="<c:url value="/restricted/getDressCode.${ext}"/>">dress code</a></li>
-      </ul>
-    </li>
-    <li><a href="<c:url value="/restricted/getVenue.${ext}"/>">Venue Information</a></li>
-    <li><a href="<c:url value="/restricted/getTravel.${ext}"/>">Travel Information</a></li>
-    <li><a href="<c:url value="/restricted/getLogout.${ext}"/>">Log Out</a></li>
-  </ul>
-</div>
-<div id="rightcol">
-  <div style="margin:10px" align="center"> <span class="welcome">Welcome</span> <br />
-    <img style="margin-top: -10px" src="<c:url value = "/images/underline.jpg"/>" width="340" height="11" /> <br />
-    <br />
-    <img src="<c:url value = "/images/banner.jpg"/>" width="100%" />
-    <hr style="width:100%;height:1px;background-color:#B50E31;border:0" />
-    <span class="three">3</span><span class="days">days</span> <br />
-    <div class="slogan" align="center">of best practices sharing, leading-edge 
-      technology updates and executive networking</div>
-    <hr style="margin-top:24px;width:100%;height:1px;background-color:#5B7F8A;border:0;clear:both" />
-    <div class="copyright">&copy; 1998- 2010 F5 Networks, Inc. All rights reserved.</div>
-    <img id="logo2" src="<c:url value = "/images/logo2.jpg/"/>" width="116" height="36" /></div>
-</div>
-</body>
-</html>
+
+<c:import url="/header.jsp"><c:param name="currentPg" value="home"/><c:param name="currentAction" value="${actionCommand}"/><c:param name="contentOnly" value="${param.contentOnly}"/></c:import>
+
+<script>
+function tryAlertRegistrationClose() {
+<%
+	sg.com.stellarstudios.imser.entity.User user = (sg.com.stellarstudios.imser.entity.User) session.getAttribute("userObject");
+  	if (user != null) {
+  		pageContext.setAttribute("userRegistration", user.getUserRegistration());
+ 	}
+    java.util.Calendar elevenDec = new java.util.GregorianCalendar();
+    elevenDec.set(java.util.Calendar.DAY_OF_MONTH, 12);
+    elevenDec.set(java.util.Calendar.MONTH, 11);
+    elevenDec.set(java.util.Calendar.YEAR, 2007);
+    elevenDec.set(java.util.Calendar.HOUR_OF_DAY, 0);
+    elevenDec.set(java.util.Calendar.MINUTE, 0);
+    
+    pageContext.setAttribute("beforeElevenDec", new Boolean(java.util.Calendar.getInstance().before(elevenDec)));
+%>
+	<c:if test="${beforeElevenDec == true and userRegistration.registrationStatus != 2}">alert('Registration has closed on 11 Dec 07.');</c:if>
+}
+</script>  
+
+<body onload="tryAlertRegistrationClose();"/>
+
+<table class="content_table_main">
+			<tr>
+        		<td>&nbsp;</td>
+      		</tr>
+      		<tr>
+        		<td class="allheader" align="center">Thank you for attending the Hi-5 2008 Partner Summit!</td>
+      		</tr>
+      		<!-- 
+      		<tr>
+       			<td align="center"><img src="<c:url value="/images/home-mid.jpg"/>"/></td>
+      		</tr>
+      		<tr>
+       			<td align="center">&nbsp;</td>
+      		</tr>
+     		<tr>
+       			<td align="center"><img src="<c:url value="/images/home-bottom.jpg"/>"/></td>
+    		</tr>
+    		 -->
+      		<tr>
+       			<td align="center">&nbsp;</td>
+      		</tr>
+    		<tr>
+       			<td align="center">
+					To access the presentations, video and photos from this event, we require your feedback in a brief survey.<br/><br/>
+					
+					This information will help us to improve future F5 partner events.<br/><br/>
+					
+					<a href="<c:url value="/restricted/pnpHome.${ext}"/>"><img src="<c:url value="/images/button_start_survey.jpg"/>" border="0"/></a>
+				</td>
+    		</tr>
+</table>
+
+<c:import url="/footer.jsp"><c:param name="contentOnly" value="${param.contentOnly}"/></c:import>

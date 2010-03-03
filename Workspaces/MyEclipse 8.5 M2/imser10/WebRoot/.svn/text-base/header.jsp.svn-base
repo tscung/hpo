@@ -1,145 +1,94 @@
-<%@ include file="/jspf/execTaglibImports.jspf"%>
-<%@ include file="/jspf/execStandard.jspf"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>F5</title>
-		<link href="<c:url value="/css/reset-min.css"/>" rel="stylesheet"
-			type="text/css" />
-		<link href="<c:url value="/css/style.css"/>" rel="stylesheet"
-			type="text/css" />
-		<script type="text/javascript"
-			src="<c:url value="/js/jquery.min.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/js/ddaccordion.js"/>"></script>
-		<script type="text/javascript" src="<c:url value="/js/cufon-yui.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/js/Frutiger_CE_55_Roman_400.font.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/js/Frutiger_CE_55_Roman_italic_700.fontfull.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/js/Frutiger_CE_45_Light_300.font.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/js/Frutiger_CE_45_Light_700.font.js"/>"></script>
-		<script type="text/javascript">
-	Cufon.replace('div.agendadate', {
-		fontFamily : 'Frutiger CE 55 Roman'
-	});
-	Cufon.replace('div.agendatitle, td.num, td.events, p.reg12pt', {
-		fontFamily : 'Frutiger CE 45 Light'
-	});
-</script>
-		<script type="text/javascript" src="<c:url value="js/onload.js"/>"></script>
-	</head>
-	<body>
-		<div id="header">
-			<img class="logo" src="<c:url value="img/logo.jpg"/>" width="350"
-				height="92" />
-			<img class="decortop"
-				src="<c:url value="images/decor_topright.jpg"/>" width="165"
-				height="65" />
-		</div>
-		<div id="leftcol">
-			<ul class="nav">
-				<li>
-					<c:choose>
-						<c:when test="${param.currentPg == 'home'}">
-							<a href="<c:url value="/restricted/getHome.${ext}"/>"
-								class="navactive">Home</a>
-						</c:when>
-						<c:otherwise>
-							<a href="<c:url value="/restricted/getHome.${ext}"/>">Home</a>
-						</c:otherwise>
-					</c:choose>
+<%@ include file="/jspf/execTaglibImports.jspf" %>
+<%@ include file="/jspf/execStandard.jspf" %>
 
-				</li>
-				<li>
-					<c:choose>
-						<c:when test="${param.currentPg == 'register'}">
-							<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-								class="navactive">Register</a>
-						</c:when>
-						<c:otherwise>
-							<a href="<c:url value="/restricted/getRegister.${ext}"/>">Register</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-				<li style="padding-top: 5px;">
-					<div class="subnavhead">
-						Event Information
-					</div>
-					<ul class="subnav" style="display: block">
-						<li>
-							<c:choose>
-								<c:when test="${param.currentPg == 'venue'}">
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-										class="navactive">Venue Information</a>
-								</c:when>
-								<c:otherwise>
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>">Venue
-										Information</a>
-								</c:otherwise>
-							</c:choose>
-						</li>
-						<li>
-							<c:choose>
-								<c:when test="${param.currentPg == 'venue'}">
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-										class="navactive">Venue Information</a>
-								</c:when>
-								<c:otherwise>
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>">Venue
-										Information</a>
-								</c:otherwise>
-							</c:choose>
-						</li>
-						<li>
-							<c:choose>
-								<c:when test="${param.currentPg == 'venue'}">
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-										class="navactive">Venue Information</a>
-								</c:when>
-								<c:otherwise>
-									<a href="<c:url value="/restricted/getRegister.${ext}"/>">Venue
-										Information</a>
-								</c:otherwise>
-							</c:choose>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<li>
-						<c:choose>
-							<c:when test="${param.currentPg == 'venue'}">
-								<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-									class="navactive">Venue Information</a>
-							</c:when>
-							<c:otherwise>
-								<a href="<c:url value="/restricted/getRegister.${ext}"/>">Venue
-									Information</a>
-							</c:otherwise>
-						</c:choose>
-					</li>
-				</li>
-				<li>
-					<li>
-						<c:choose>
-							<c:when test="${param.currentPg == 'travel'}">
-								<a href="<c:url value="/restricted/getRegister.${ext}"/>"
-									class="navactive">Travel Infomation</a>
-							</c:when>
-							<c:otherwise>
-								<a href="<c:url value="/restricted/getRegister.${ext}"/>">Travel
-									information</a>
-							</c:otherwise>
-						</c:choose>
-					</li>
-				</li>
-				<li>
-					<a href="<c:url value="/restricted/getLogout.${ext}"/>">Log Out</a>
-				</li>
-			</ul>
-		</div>
-		<div id="rightcol">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Pump It Up Hi-5 2008</title>
+    
+    <link href="<c:url value="/css/styles.css"/>" rel="stylesheet" type="text/css" />
+    <link href="<c:url value="/css/table.css"/>" rel="stylesheet" type="text/css" />
+    <link href="<c:url value="/css/menu.css"/>" rel="stylesheet" type="text/css" />
+    
+	<%@include file="/jspf/etcFunctions.jspf" %>	
+  </head>
+  
+  <%@include file="/jspf/jsSite.jspf" %>
+
+  <table class="mainTable" cellpadding="0" cellspacing="0" align="center">
+
+  <c:if test="${param.contentOnly != true}">    
+    <tr>
+      <td class="tableTopLeft"><img src="<c:url value="/images/top-left.jpg"/>"></td>
+      <td background="<c:url value="/images/top-rightbg.jpg"/>"><img src="<c:url value="/images/top-right.jpg"/>"></td>
+    </tr>
+    <tr>
+      <td class="naviBar">
+      	<c:choose><c:when test="${param.currentPg == 'home'}"><c:set var="homeImg" value="yellow"/></c:when><c:otherwise><c:set var="homeImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'register'}"><c:set var="registerImg" value="yellow"/></c:when><c:otherwise><c:set var="registerImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'agenda'}"><c:set var="agendaImg" value="yellow"/></c:when><c:otherwise><c:set var="agendaImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'speakerprofile'}"><c:set var="speakerprofileImg" value="yellow"/></c:when><c:otherwise><c:set var="speakerprofileImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'socialactivities'}"><c:set var="socialactivitiesImg" value="yellow"/></c:when><c:otherwise><c:set var="socialactivitiesImg" value="white"/></c:otherwise></c:choose>      	
+      	<c:choose><c:when test="${param.currentPg == 'dresscode'}"><c:set var="dresscodeImg" value="yellow"/></c:when><c:otherwise><c:set var="dresscodeImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'klmalaysia'}"><c:set var="klmalaysiaImg" value="yellow"/></c:when><c:otherwise><c:set var="klmalaysiaImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'hotelaccomo'}"><c:set var="hotelaccomoImg" value="yellow"/></c:when><c:otherwise><c:set var="hotelaccomoImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'airfare'}"><c:set var="airfareImg" value="yellow"/></c:when><c:otherwise><c:set var="airfareImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'expenses'}"><c:set var="expensesImg" value="yellow"/></c:when><c:otherwise><c:set var="expensesImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'food'}"><c:set var="foodImg" value="yellow"/></c:when><c:otherwise><c:set var="foodImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'companions'}"><c:set var="companionsImg" value="yellow"/></c:when><c:otherwise><c:set var="companionsImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'travelinsure'}"><c:set var="travelinsureImg" value="yellow"/></c:when><c:otherwise><c:set var="travelinsureImg" value="white"/></c:otherwise></c:choose>
+      	<c:choose><c:when test="${param.currentPg == 'pnp'}"><c:set var="pnpImg" value="yellow"/></c:when><c:otherwise><c:set var="pnpImg" value="white"/></c:otherwise></c:choose>
+      	      	      	      	      	      	      	      	      	      	      	     	      	      	      	      	      	      	      	      	      	
+	    <a href="<c:url value="/restricted/getHome.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('home','','<c:url value="/images/nav/home-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/home-${homeImg}.jpg"/>" name="home" width="150" height="40" border="0"></a><br/>
+	    
+	    <c:if test="${sessionScope.userObject.email == 'stellarstudios@gmail.com'}">
+	      <a href="<c:url value="/restricted/preloadUpdateUserRegistration.${ext}?id=${sessionScope.userObject.id}"/>"><img src="<c:url value="/images/nav/register-yellow.jpg"/>" name="register" width="150" height="40" border="0"></a><br/>
+	    </c:if>
+	    <c:if test="${sessionScope.userObject.email != 'stellarstudios@gmail.com'}">
+		  <img src="<c:url value="/images/nav/register-closed.jpg"/>" name="register" width="150" height="40" border="0"><br/>	    
+	    </c:if>
+	    
+	    <a href="<c:url value="/restricted/pnpHome.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('pnp','','<c:url value="/images/nav/presentation-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/presentation-${pnpImg}.jpg"/>" name="pnp" border="0"></a><br/>	    
+      
+		  <div style="float: left" id="mySideMenu" class="sdmenu">
+		    <div>
+		      <span id="sdmenuspan"><a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eventinfo','','<c:url value="/images/nav/eventinfo-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/eventinfo-white.jpg"/>" name="eventinfo" width="150" height="40" border="0"></a></span>
+		      <a href="<c:url value="/restricted/getAgenda.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('agenda','','<c:url value="/images/nav/agenda-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/agenda-${agendaImg}.jpg"/>" name="agenda" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getSpeakerProfile.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('speakerprofile','','<c:url value="/images/nav/speakerprofile-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/speakerprofile-${speakerprofileImg}.jpg"/>" name="speakerprofile" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getSocialActivities.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('socialactivities','','<c:url value="/images/nav/socialactivities-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/socialactivities-${socialactivitiesImg}.jpg"/>" name="socialactivities" width="150" height="30" border="0"></a>		      
+		      <a href="<c:url value="/restricted/getDressCode.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('dresscode','','<c:url value="/images/nav/dresscode-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/dresscode-${dresscodeImg}.jpg"/>" name="dresscode" width="150" height="30" border="0"></a>
+		    </div>
+		    <div>
+		      <span id="sdmenuspan"><a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('venueinfo','','<c:url value="/images/nav/venueinfo-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/venueinfo-white.jpg"/>" name="venueinfo" width="150" height="40" border="0"></a></span>
+		      <a href="<c:url value="/restricted/getKLMalaysia.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('kualalumpur','','<c:url value="/images/nav/kualalumpur-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/kualalumpur-${klmalaysiaImg}.jpg"/>" name="kualalumpur" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getHotelAccomo.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('hotel','','<c:url value="/images/nav/hotel-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/hotel-${hotelaccomoImg}.jpg"/>" name="hotel" width="150" height="30" border="0"></a>
+		    </div>
+		    <div>
+		      <span id="sdmenuspan"><a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('travelinfo','','<c:url value="/images/nav/travelinfo-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/travelinfo-white.jpg"/>" name="travelinfo" width="150" height="40" border="0"></a></span>
+		      <a href="<c:url value="/restricted/getAirfare.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('airfare','','<c:url value="/images/nav/airfare-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/airfare-${airfareImg}.jpg"/>" name="airfare" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getExpenses.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('expenses','','<c:url value="/images/nav/expenses-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/expenses-${expensesImg}.jpg"/>" name="expenses" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getFood.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('food','','<c:url value="/images/nav/food-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/food-${foodImg}.jpg"/>" name="food" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getCompanions.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('companions','','<c:url value="/images/nav/companionspouses-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/companionspouses-${companionsImg}.jpg"/>" name="companions" width="150" height="30" border="0"></a>
+		      <a href="<c:url value="/restricted/getTravelInsure.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('travelinsure','','<c:url value="/images/nav/travelinsurance-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/travelinsurance-${travelinsureImg}.jpg"/>" name="travelinsure" width="150" height="30" border="0"></a>
+		    </div>
+		  </div>
+	   </div>
+  	    <a href="<c:url value="/logoutUser.${ext}"/>" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('logout','','<c:url value="/images/nav/logout-yellow.jpg"/>',1)"><img src="<c:url value="/images/nav/logout-white.jpg"/>" name="logout" width="150" height="40" border="0"></a>
+	   
+      </td>
+      <td width="100%">
+  
+  	<script language="JavaScript" type="text/javascript">
+		var myMenu = new SDMenu("mySideMenu");
+
+		// Default values...
+		myMenu.speed = 3;                     // Menu sliding speed (1 - 5 recomended)
+		myMenu.remember = true;               // Store menu states (expanded or collapsed) in cookie and restore later
+		myMenu.oneSmOnly = false;             // One expanded submenu at a time
+		myMenu.markCurrent = true;            // Mark current link / page (link.href == location.href)
+		
+		myMenu.init();
+		myMenu.runCookiesState();
+	</script>       
+  </c:if>    
