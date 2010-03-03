@@ -1,0 +1,8 @@
+	<script language="JavaScript" src="<c:url value="/js/etc.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" src="<c:url value="/js/sdmenu.js"/>" type="text/javascript"></script>		
+	<script language="JavaScript" src="<c:url value="/js/validations.js"/>" type="text/javascript"></script>
+
+	<script language="JavaScript" type="text/javascript">
+	function updateSelectedClass(tabID) {
+	}
+	</script>

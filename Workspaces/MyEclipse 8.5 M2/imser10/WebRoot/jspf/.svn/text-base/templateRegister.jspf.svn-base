@@ -1,0 +1,286 @@
+<c:set var="event" value="0"/>
+<c:if test="${not empty model.coolDownSocialEvents}"><c:set var="event" value="${model.coolDownSocialEvents}"/></c:if>
+
+<c:set var="fromSingapore" value="0"/>
+<c:if test="${model.fromSingapore == true}"><c:set var="fromSingapore" value="1"/></c:if>
+<body onload="displaySelectedEvent(<c:out value="${event}"/>);hideLocalDetails(<c:out value="${fromSingapore}"/>);"/>
+
+<c:set var="defaultCalendarDate" value="01/01/2008"/>
+
+<script src="<c:url value="/dwr/interface/UserRegistrationAction.js"/>"></script>
+<%@include file="/jspf/jsLoadAjaxDWR.jspf" %>
+
+<script>
+function displaySelectedEvent(value) {
+	<!-- hide all first -->
+	document.getElementById('event1').style.display = 'none';
+	document.getElementById('event2').style.display = 'none';
+	document.getElementById('event3').style.display = 'none';
+	document.getElementById('event4').style.display = 'none';
+	document.getElementById('event5').style.display = 'none';
+	document.getElementById('event1Images').style.display = 'none';
+	document.getElementById('event2Images').style.display = 'none';
+	document.getElementById('event3Images').style.display = 'none';
+	document.getElementById('event4Images').style.display = 'none';
+	document.getElementById('event5Images').style.display = 'none';
+	
+	document.getElementById('event1Details1').style.display = 'none';
+	document.getElementById('event1Details2').style.display = 'none';
+	
+	if (value != 0 && value != 6) {
+		<!-- display selected -->
+		document.getElementById('event' + value).style.display = '';
+		document.getElementById('event' + value + 'Images').style.display = '';
+	}
+	if (value == 1) {
+		document.getElementById('event' + value + 'Details1').style.display = '';
+		document.getElementById('event' + value + 'Details2').style.display = '';
+	}		
+}
+function hideLocalDetails(selected) {
+	if (selected == 1) {
+		document.getElementById('nonLocal1').style.display = 'none';
+		document.getElementById('nonLocal2').style.display = 'none';
+		document.getElementById('nonLocal3').style.display = 'none';
+		document.getElementById('nonLocal4').style.display = 'none';
+		document.getElementById('nonLocal5').style.display = 'none';
+		document.getElementById('nonLocal6').style.display = 'none';
+	}
+	else if (selected == 0) {
+		document.getElementById('nonLocal1').style.display = '';
+		document.getElementById('nonLocal2').style.display = '';
+		document.getElementById('nonLocal3').style.display = '';
+		document.getElementById('nonLocal4').style.display = '';
+		document.getElementById('nonLocal5').style.display = '';
+		document.getElementById('nonLocal6').style.display = '';
+	}
+}
+function save(fieldName, fieldValue) {
+	UserRegistrationAction.save(fieldName, fieldValue);
+}
+</script>
+
+      <c:if test="${actionCommand == 'preloadUpdate'}">
+        <s:hidden name="id" value="${model.id}" theme="simple"/>
+        <s:hidden name="user.id" value="${model.user.id}" theme="simple"/>
+      </c:if>
+            
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Personal Information</td></tr>      
+        <s:textfield name="firstName" cssClass="form_obj" size="50" label="First Name" required="true" onblur="save(this.name, this.value);"/>
+        <s:textfield name="lastName" cssClass="form_obj" size="50" label="Last Name" required="true" onblur="save(this.name, this.value);"/>
+        <s:textfield name="title" cssClass="form_obj" size="50" label="Title" required="true" onblur="save(this.name, this.value);"/>
+        <s:textfield name="company" cssClass="form_obj" size="50" label="Company" required="true" onblur="save(this.name, this.value);"/>
+        <s:textfield name="address1" cssClass="form_obj" size="50" label="Address 1" required="true" onblur="save(this.name, this.value);"/>
+        <s:textfield name="address2" cssClass="form_obj" size="50" label="Address 2" onblur="save(this.name, this.value);"/>
+        <tr>
+          <td class="tdLabel"><span class="requiredasterisk">*</span> Postal Code:</td>
+          <td class="tdContent"><s:textfield name="postalCode" cssClass="form_obj" size="12" theme="simple" onblur="save(this.name, this.value);"/><s:fielderror theme="simple"><s:param>postalCode</s:param></s:fielderror><br/>
+          <span class="notered">NOTE: For countries without postal code, please enter &quot;0&quot;.</span></td>
+        </tr>            
+        <s:textfield name="user.email" cssClass="form_obj" size="50" label="Email" required="true" readonly="true"/>
+        <s:select name="country.id" cssClass="form_obj" multiple="false" size="1" list="preloadData.countryTypes" listKey="value" listValue="label" label="Country" required="true" onchange="save(this.name, this.value);"/>
+        <s:textfield name="city" cssClass="form_obj" size="30" label="City" required="true" onblur="save(this.name, this.value);"/>
+        <tr>
+          <td class="tdLabel"><span class="requiredasterisk">*</span> Phone:</td>
+          <td class="tdContent"><s:textfield name="phone" cssClass="form_obj" size="12" theme="simple" onblur="save(this.name, this.value);"/><s:fielderror theme="simple"><s:param>phone</s:param></s:fielderror><br/>
+          <span class="notered">e.g: Country Code - Area Code - Number.</span></td>
+        </tr>          
+        <s:textfield name="fax" cssClass="form_obj" size="18" label="Fax" onblur="save(this.name, this.value);"/>
+      </table></td></tr>
+      
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Additional Information</td></tr>
+        <s:textfield name="additionalInfoSpecialDietaryNeeds" cssClass="form_obj" size="50" label="Special Dietary Requests" onblur="save(this.name, this.value);"/>
+        <s:textarea name="additionalInfoSpecialNeeds" cssClass="form_obj" rows="4" cols="40" label="Special Needs" onblur="save(this.name, this.value);"/>
+      </table></td></tr>
+      
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Shirt Size</td></tr>
+        <tr>
+          <td class="tdLabel"><span class="requiredasterisk">* </span>Shirt Size:</td>
+          <td class="tdContent"><s:select theme="simple" cssClass="form_obj" name="shirtSize" list="#{'':'- Please select one -', 'XS':'XS', 'S':'S', 'M':'M', 'L':'L', 'XL':'XL'}" onchange="save(this.name, this.value);"/><s:fielderror theme="simple"><s:param>shirtSize</s:param></s:fielderror></td>
+        </tr>        
+      </table></td></tr>
+      
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Pump It Up Hi-5 Attendee</td></tr>
+        <tr>
+	      <td class="tdLabel"><span class="requiredasterisk">*</span> Are you a attendee from Malaysia?:</td>
+	  	  <td class="tdContent">
+			<s:radio theme="simple" name="fromSingapore" list="#{'true':'Yes'}" onclick="hideLocalDetails(1);" onblur="save(this.name, this.value);"/><br/>
+			<s:radio theme="simple" name="fromSingapore" list="#{'false':'No'}" onclick="hideLocalDetails(0);" onblur="save(this.name, this.value);"/><br/>
+		    <s:fielderror theme="simple"><s:param>fromSingapore</s:param></s:fielderror>
+	  	  </td>  
+	    </tr>
+      </table></td></tr>
+
+      <tr id="nonLocal1"><td colspan="2">&nbsp;</td></tr>
+      <tr id="nonLocal2"><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Flight Information</td></tr>
+        <s:textfield name="flightInfoArrivalAirline" cssClass="form_obj" size="40" label="Arrival Airline" onblur="save(this.name, this.value);"/>
+        <s:textfield name="flightInfoArrivalFlightNo" cssClass="form_obj" size="40" label="Arrival Flight No." onblur="save(this.name, this.value);"/>      
+        <tr>
+	      <td class="tdLabel">Arrival Date:</td>
+	  	  <td class="tdContent">
+	  	    <s:textfield readonly="true" cssClass="form_obj" name="flightInfoArrivalDate" size="14" theme="simple" onblur="save(this.name, this.value);"/>
+            <a href="#" onclick="cal.select(document.mainForm.elements['flightInfoArrivalDate'],'anchor1','dd/MM/yyyy','<c:out value="${defaultCalendarDate}"/>'); return false;" name="anchor1" id="anchor1"><img src="<c:url value="/images/calendar.jpg"/>" width="20" height="17" border="0" alt=""/></a>
+		    <s:fielderror theme="simple"><s:param>flightInfoArrivalDate</s:param></s:fielderror>          
+	  	  </td>  
+	    </tr>
+	    <tr>
+	      <td class="tdLabel">Arrival Time:</td>
+	      <td class="tdContent"><s:select name="flightInfoArrivalTimeHour" cssClass="form_obj" multiple="false" size="1" list="preloadData.hourTypes" listKey="value" listValue="label" theme="simple" onchange="save(this.name, this.value);save('flightInfoArrivalDate',this.form.flightInfoArrivalDate.value);"/>:<s:select name="flightInfoArrivalTimeMinute" cssClass="form_obj" multiple="false" size="1" list="preloadData.minuteTypes" listKey="value" listValue="label" theme="simple" onchange="save(this.name, this.value);save('flightInfoArrivalDate',this.form.flightInfoArrivalDate.value);" /></td>
+	    </tr>
+        <s:textarea name="flightInfoSpecialArrivalRqmt" cssClass="form_obj" rows="4" cols="40" label="Special Arrival Requirement" onblur="save(this.name, this.value);"/>
+        
+        <s:textfield name="flightInfoDepartureAirline" cssClass="form_obj" size="40" label="Departure Airline" onblur="save(this.name, this.value);"/>
+        <s:textfield name="flightInfoDepartureFlightNo" cssClass="form_obj" size="40" label="Departure Flight No." onblur="save(this.name, this.value);"/>    
+        <tr>
+	      <td class="tdLabel">Departure Date:</td>
+	      <td class="tdContent">
+	  	    <s:textfield readonly="true" cssClass="form_obj" name="flightInfoDepartureDate" size="14" theme="simple" onblur="save(this.name, this.value);"/>
+            <a href="#" onclick="cal.select(document.mainForm.elements['flightInfoDepartureDate'],'anchor2','dd/MM/yyyy','<c:out value="${defaultCalendarDate}"/>'); return false;" name="anchor2" id="anchor2"><img src="<c:url value="/images/calendar.jpg"/>" width="20" height="17" border="0" alt=""/></a>
+		    <s:fielderror theme="simple"><s:param>flightInfoDepartureDate</s:param></s:fielderror>
+	      </td>  
+	    </tr>
+	    <tr>
+	      <td class="tdLabel">Departure Time:</td>
+	      <td class="tdContent"><s:select name="flightInfoDepartureTimeHour" cssClass="form_obj" multiple="false" size="1" list="preloadData.hourTypes" listKey="value" listValue="label" theme="simple" onchange="save(this.name, this.value);save('flightInfoDepartureDate',this.form.flightInfoDepartureDate.value);" />:<s:select name="flightInfoDepartureTimeMinute" cssClass="form_obj" multiple="false" size="1" list="preloadData.minuteTypes" listKey="value" listValue="label" theme="simple" onchange="save(this.name, this.value);save('flightInfoDepartureDate',this.form.flightInfoDepartureDate.value);" /></td>
+	    </tr>
+        <s:textarea name="flightInfoSpecialDepartureRqmt" cssClass="form_obj" rows="4" cols="40" label="Special Departure Requirement" onblur="save(this.name, this.value);"/>
+      </table></td></tr>
+      <tr id="nonLocal3"><td class="indentedRow" colspan="2"><span class="notered">Note: F5 will provide airport transfers from Kuala Lumpur International Airport to the hotel on the 28th, 29th of Jan and from the hotel to Kuala Lumpur International Airport on the 30th of Jan. You will need to make your own arrangements if your transfer requirements fall outside those dates or to accomodate any accompanying guests.</span></td></tr>      
+      
+      <tr id="nonLocal4"><td colspan="2">&nbsp;</td></tr>
+      <tr id="nonLocal5"><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Hotel Accomodation</td></tr>
+	    <tr>
+	      <td class="tdLabel">Hotel:</td>
+	      <td class="tdContent">The Westin, Kuala Lumpur</td>
+	    </tr>      
+        <tr>
+	      <td class="tdLabel">Check-in Date:</td>
+	  	  <td class="tdContent">
+	  	    <s:textfield readonly="true" cssClass="form_obj" name="hotelCheckinDate" size="14" theme="simple" onblur="save(this.name, this.value);" />
+            <a href="#" onclick="cal.select(document.mainForm.elements['hotelCheckinDate'],'anchor3','dd/MM/yyyy','<c:out value="${defaultCalendarDate}"/>'); return false;" name="anchor3" id="anchor3"><img src="<c:url value="/images/calendar.jpg"/>" width="20" height="17" border="0" alt=""/></a>
+		    <s:fielderror theme="simple"><s:param>hotelCheckinDate</s:param></s:fielderror>
+	  	  </td>  
+	    </tr>
+        <tr>
+	      <td class="tdLabel">Check-out Date:</td>
+	  	  <td class="tdContent">
+	  	    <s:textfield readonly="true" cssClass="form_obj" name="hotelCheckoutDate" size="14" theme="simple" onblur="save(this.name, this.value);"/>
+            <a href="#" onclick="cal.select(document.mainForm.elements['hotelCheckoutDate'],'anchor4','dd/MM/yyyy','<c:out value="${defaultCalendarDate}"/>'); return false;" name="anchor4" id="anchor4"><img src="<c:url value="/images/calendar.jpg"/>" width="20" height="17" border="0" alt=""/></a>
+		    <s:fielderror theme="simple"><s:param>hotelCheckoutDate</s:param></s:fielderror>
+	  	  </td>  
+	    </tr>	        
+        <s:radio name="hotelSmokingRoom" list="#{'true':'Yes', 'false':'No'}" label="Smoking Room" onblur="save(this.name, this.value);" onclick="save('hotelCheckinDate',this.form.hotelCheckinDate.value);save('hotelCheckoutDate',this.form.hotelCheckoutDate.value);"/>
+      </table></td></tr>
+      <tr id="nonLocal6"><td class="indentedRow" colspan="2"><span class="notered">Note: Hotel rooms from 28 - 30 January 2008 will be paid by F5 Networks. Additional costs incurred due to room nights outside this period will be borne by respective guests.</span></td></tr>
+      
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Pump It Up Hi-5 Tracks - 29 Jan 2008</td></tr>   
+        <tr><td colspan="2"><span class="noteblack">This session is divided into Sales, Technical and Business Tracks. Please select the track most suitable to you. Refer to the agenda for details of each tracks.</span></td></tr>  
+        <tr>
+	  	  <td class="tdContent" colspan="2">
+			<s:radio theme="simple" name="track" list="#{'1':'Sales Track'}" onblur="save(this.name, this.value);"/><br/>
+			Most suitable for sales and marketing personnel.<br><br/>
+			<s:radio theme="simple" name="track" list="#{'2':'Technical Track'}" onblur="save(this.name, this.value);"/><br/><br/>
+			<s:radio theme="simple" name="track" list="#{'3':'Business Track'}" onblur="save(this.name, this.value);"/><br/>
+			Reserved only for business proprietors, senior executives and financial decision-makers.<br>
+			<s:fielderror theme="simple"><s:param>track</s:param></s:fielderror>
+		  </td>
+		</tr>
+      </table></td></tr>
+      <tr><td class="indentedRow" colspan="2"><span class="notered">Note: Seats for all tracks will be reserved on first-come-first-served basis. Please register EARLY.</span></td></tr>
+      
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Social Activities - 30 Jan 2008 (Please Select One)</td></tr>
+        <tr>
+	      <td class="tdLabel">Activities:</td>
+	  	  <td class="tdContent">
+	  	  	<c:choose><c:when test="${preloadData.coolDownSocialEventsFigures.event1 >= preloadData.coolDownSocialEventsFigures.eventMax1}"><c:set var="event1Disable" value="true"/></c:when><c:otherwise><c:set var="event1Disable" value="false"/></c:otherwise></c:choose>
+	  	  	<c:choose><c:when test="${preloadData.coolDownSocialEventsFigures.event2 >= preloadData.coolDownSocialEventsFigures.eventMax2}"><c:set var="event2Disable" value="true"/></c:when><c:otherwise><c:set var="event2Disable" value="false"/></c:otherwise></c:choose>
+	  	  	<c:choose><c:when test="${preloadData.coolDownSocialEventsFigures.event3 >= preloadData.coolDownSocialEventsFigures.eventMax3}"><c:set var="event3Disable" value="true"/></c:when><c:otherwise><c:set var="event3Disable" value="false"/></c:otherwise></c:choose>
+	  	  	<c:choose><c:when test="${preloadData.coolDownSocialEventsFigures.event4 >= preloadData.coolDownSocialEventsFigures.eventMax4}"><c:set var="event4Disable" value="true"/></c:when><c:otherwise><c:set var="event4Disable" value="false"/></c:otherwise></c:choose>
+	  	  	<c:choose><c:when test="${preloadData.coolDownSocialEventsFigures.event5 >= preloadData.coolDownSocialEventsFigures.eventMax5}"><c:set var="event5Disable" value="true"/></c:when><c:otherwise><c:set var="event5Disable" value="false"/></c:otherwise></c:choose>
+	  	  		  	  		  	  		  	  		  	  	
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'1':'Third F5 Hi-5 Golf Tournament'}" onclick="displaySelectedEvent(this.value);" onblur="save(this.name, this.value);" disabled="${event1Disable}"/> <span class="highlight">(<c:out value="${preloadData.coolDownSocialEventsFigures.event1}"/>/<c:out value="${preloadData.coolDownSocialEventsFigures.eventMax1}"/>)</span><br/>
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'2':'Go-Kart at Sepang International Circuit'}" onclick="displaySelectedEvent(this.value);" onblur="save(this.name, this.value);" disabled="${event2Disable}"/> <span class="highlight">(<c:out value="${preloadData.coolDownSocialEventsFigures.event2}"/>/<c:out value="${preloadData.coolDownSocialEventsFigures.eventMax2}"/>)</span><br/>
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'3':'Horse Back Riding at Taman Equnie Club'}" onclick="displaySelectedEvent(this.value);" onblur="save(this.name, this.value);" disabled="${event3Disable}"/> <span class="highlight">(<c:out value="${preloadData.coolDownSocialEventsFigures.event3}"/>/<c:out value="${preloadData.coolDownSocialEventsFigures.eventMax3}"/>)</span><br/>
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'4':'Spa Indrani @ StarHill Gallery'}" onclick="displaySelectedEvent(this.value);" onblur="save(this.name, this.value);" disabled="${event4Disable}"/> <span class="highlight">(<c:out value="${preloadData.coolDownSocialEventsFigures.event4}"/>/<c:out value="${preloadData.coolDownSocialEventsFigures.eventMax4}"/>)</span><br/>
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'5':'City Tour of Kuala Lumpur'}" onclick="displaySelectedEvent(this.value);" onblur="save(this.name, this.value);" disabled="${event5Disable}"/> <span class="highlight">(<c:out value="${preloadData.coolDownSocialEventsFigures.event5}"/>/<c:out value="${preloadData.coolDownSocialEventsFigures.eventMax5}"/>)</span><br/>	
+			<s:radio theme="simple" name="coolDownSocialEvents" list="#{'6':'None of the Above'}" onclick="displaySelectedEvent(0);" onblur="save(this.name, this.value);"/>
+		    <s:fielderror theme="simple"><s:param>coolDownSocialEvents</s:param></s:fielderror>
+	  	  </td>  
+	    </tr>	   
+	  </table></td></tr>
+	  <tr><td class="indentedRow" colspan="2"><span class="notered">Note: Seats are limited for all activities and reserved on first-come-first-served basis.</span></td></tr>
+	  
+	  <c:if test="${showActivities != false}">
+	  <tr><td colspan="2">&nbsp;</td></tr>
+	  <tr><td colspan="2"><table align="center" cellpadding="5" cellspacing="0">
+	    <tr>
+	      <td><table cellpadding="0" cellspacing="0" class="eventTable">
+            <tr id="event1"><td>
+              <span class="contentheader">Third F5 Hi-5 Golf Tournament</span><br/>
+              Tee-off on one of Malaysia’s top golf resorts, the Glenmarie Golf & Country Club. Reputed for is immaculate fairways and greens, the course meanders through a scenic variety of aesthetic lakes and tropical gardens with palm trees and flowering shrubs.<br>
+			  <br>In the spirit of fun and camaraderie, tournament awards will go out to the overall lowest score, longest drive and nearest to the pin. Participants in this event will be required to leave the hotel in the early hours of Wednesday morning, and breakfast and lunch will be provided at the club. 
+			  <strong>Please remember to bring along your own golf shoes, clubs and bags. Rentals will not be available.</strong>
+            </td></tr>       
+            <tr id="event2"><td>
+              <span class="contentheader">Go&ndash;Kart at Sepang International Circuit</span><br/>
+			  Experience the excitement and blistering pace of the professional Go-Kart track at Sepang International Circuit – home of the Malaysian Formula One Grand Prix. In a friendly competition to determine the three fastest teams, you will be divided into groups before the start of a practice session. This will be followed by heats, and concluded with a final round of racing. All participants are reminded to drive within their abilities, and not that of the person who just overtook them. As a precaution, safety helmets will be provided.<br>
+			  <br>Your day will start with breakfast in the hotel before boarding buses to the circuit. This activity ends with lunch at the Putrajaya Marriott Hotel.<br>
+			  <br><span class="agendaitalic">Do note that participation is limited to 40 participants and will be accepted on a first-come first-served basis.</span><br>
+			  <span class="notered"><strong>NOTE: Suitable attire (jeans and sports shoes) must be worn for this activity.</strong></span>             
+            </td></tr>
+            <tr id="event3"><td>
+              <span class="contentheader">Horse Back Riding @ Taman Equnie Club</span><br/>
+              For beginners – learn the basics of riding in just one morning! This is your chance get close to nature. Learn horseback riding from qualified instructors and then enjoy a leisurely group riding activity at this riding school that is set amidst lush greenery at the foot of a hill. Your day will start with breakfast in the hotel before boarding buses to the stables. This activity ends with lunch at the Putrajaya Marriott Hotel.<br>
+			  <br><i>Do note that participation is limited to 30 participants and will be accepted on a first-come first-served basis.</i><br>
+			  <span class="notered"><strong>NOTE: Suitable attire (jeans and sports shoes) must be worn for this activity.</strong></span>
+            </td></tr>
+            <tr id="event4"><td>
+              <span class="contentheader">Spa Indrani @ Starhill Gallery</span><br/> 
+              Pamper yourself and lull your senses in this Balinese-inspired spa. After a leisurely breakfast, head for the sheer luxury of Spa Indrani at StarHill Gallery. While waiting for your spa treatment, relax in the hot hydrotherapy pool, cold plunge pool or simply unwind in the relaxation bar (S*bar) which overlooks the most vibrant street in the capital city of Malaysia, Bukit Bintang. After your treatment, head back to the hotel for your lunch. Due to constraints in the number of treatment rooms available, participation is limited to 32 persons and will be accepted on a first-come first-served basis.
+            </td></tr>
+            <tr id="event5"><td>
+              <span class="contentheader">City Tour of Kuala Lumpur</span><br/> 
+              Start your day with breakfast in the hotel before boarding the coach for an relaxing city tour.  The city skyline of Kuala Lumpur blends the Old World with the New, making the city truly vibrant. Places of interest in this tour includes Chinatown, the old Parliament House, the King's Palace, railway station, Independence Square and the National Monument. Your final stop will be at the Petronas Twin Towers, until recently, the tallest building in the world.  Here you can spend time shopping or simply strolling through the mall. Lunch and return transportation will not be provided for this activity.<br/><br/>
+              <span class="agendaitalic">Do note that participation is limited to 40 participants and will be accepted on a first-come first-served basis.</span><br/>
+              <span class="notered"><strong>*Remember to bring your camera for this tour.</strong></span>
+            </td></tr>
+	      </table></td>
+	      <td><table width="5%" cellpadding="0" cellspacing="0">
+		    <tr id="event1Images"><td><img src="<c:url value="/images/registration golf.jpg"/>"></td></tr>
+		    <tr id="event2Images"><td><img src="<c:url value="/images/registration gokarts.jpg"/>"></td></tr>
+		    <tr id="event3Images"><td><img src="<c:url value="/images/registration horse.jpg"/>"></td></tr>
+		    <tr id="event4Images"><td><img src="<c:url value="/images/registration spa.jpg"/>"></td></tr>
+		    <tr id="event5Images"><td><img src="<c:url value="/images/registration city.jpg"/>"></td></tr>
+		  </table></td>
+	    </tr>
+      </table></td></tr>
+      </c:if>
+      
+      <tr><td colspan="2"><img src="<c:url value="/images/linebreak.gif"/>" height="11" width="100%"></td></tr>
+      
+      <tr id="event1Details1"><td colspan="2"><table class="subTable" align="center" cellpadding="5" cellspacing="0">
+        <tr><td colspan="2" class="headerRow">Third F5 Hi-5 Golf Tournament</td></tr>   
+        <tr><td colspan="2">Complete the following for golfing activity:</td></tr>  
+        <tr>
+          <td class="tdLabel">No. of Handicap:</td>
+          <td class="tdContent">
+            <s:textfield name="golfNoOfHandicap" cssClass="form_obj" size="8" theme="simple" onblur="save(this.name, this.value);"/><s:fielderror theme="simple"><s:param>golfNoOfHandicap</s:param></s:fielderror>
+            <br/><span class="noteblack">NOTE: The results will be based on 36 system calculation.</span>
+          </td>
+        </tr>
+	  </table></td></tr>
+	  <tr id="event1Details2"><td class="indentedRow" colspan="2"><span class="notered">Note: All golfers are required to bring their own golf clubs and shoes for the tournament.</span></td></tr>

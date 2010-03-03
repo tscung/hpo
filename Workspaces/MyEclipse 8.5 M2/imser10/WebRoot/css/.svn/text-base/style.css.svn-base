@@ -1,0 +1,265 @@
+@charset "utf-8";
+html, body {
+	background: #F0A728;
+}
+body {
+	background: #F0A728;
+}
+#header {
+	background: #FFF;
+	float: left;
+	clear: both;
+	height: 135px;
+	width: 100%;
+	border-bottom: #FFDC96 solid 10px;
+}
+img.logo {
+	float: left;
+	width: 350px;
+	height: 92px;
+	border: none;
+	margin: 24px auto auto 112px;
+}
+img.decortop {
+	float: right;
+	margin: 10px 10px auto;
+}
+#leftcol {
+	background-color: #F0A728;
+	float: left;
+	height: 100%;
+	width: 20%;
+}
+ul.nav, ul.subnav {
+	margin-left: 24px;
+}
+ul.nav>li, ul.subnav>li {
+	margin-top: 5px;
+}
+ul.nav>li>a, ul.nav>li>div, ul.subnav>li>a {
+	font-size: 15px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+ul.nav>li>a:hover, ul.subnav>li>a:hover, ul.nav>li>a.navactive, ul.subnav>li>a.navactive {
+	color: #C91141;
+}
+
+div.subnavhead {
+	color: #FFFFFF;
+	cursor: hand;
+	cursor: pointer;
+}
+div.subnavhead:hover {
+	color: #C91141;
+}
+#rightcol {
+	float: right;
+	width: 80%;
+	background-color: #FFF;
+}
+span.welcome {
+	font-size: 72px;
+	color: #808080;
+	font-style: italic;
+	font-weight: bold;
+}
+span.three {
+	font-size: 60px;
+	color: #C91141;
+	margin-right: 6px;
+}
+span.days {
+	font-size: 48px;
+	color: #818284;
+}
+div.slogan {
+	font-size: 25px;
+	color: #818284;
+}
+div.copyright {
+	float: left;
+	font-size: 8px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+img#logo2 {
+	float: right;
+	margin-right: 10px;
+}
+ul#speakers {
+	width: 100%;
+}
+ul#speakers li {
+	clear: both;
+	margin-bottom: 20px;
+}
+ul#speakers li:last-child {
+	clear: both;
+	margin-bottom: 0px;
+}
+table.speaker {
+	width:100%;
+	padding: 0;
+	margin:0;
+}
+td.sphoto {
+	width: 70px;
+	padding-right: 5px;
+	height: 95px;
+}
+td.sphoto img {
+	margin-bottom: -7px;
+}
+
+td.sname {
+	font-size: 14px;
+	font-style: italic;
+	font-weight: 700;
+	color: #C81141;
+}
+td.stitle, td.scompany {
+	font-size: 12px;
+	font-weight: bold;
+}
+td.scompany {
+	border-bottom: solid 1px #C81141;
+}
+td.sinfo {
+	padding-top: 10px;
+	font-size: 12px;
+}
+td.sinfo p {
+	margin-top: 5px;
+}
+div#loginbanner {
+	margin-left: 60px;
+	height: 320px;
+	background: #F0A728 url(../images/pattern2.png) repeat-x;
+	border-bottom: #FFDC96 solid 10px;
+}
+div#loginbanner img {
+	margin-top: 130px;
+}
+imput {
+	border: solid 1px #000;
+	height: 20px;
+}
+input.login {
+	width: 245px;
+	float:right;
+	font-size: 9px;
+	color: #C40039;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-style: italic;
+}
+button {
+	padding: 3px;
+	font-size: 12px;
+	background-color: #C40039;
+	border: 0;
+	color:#FFF
+
+}
+span.dates {
+	color: #CA1141;
+	font-size: 12px;
+	font-weight:700
+}
+span.toopen {
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+div.regpagetitle {
+	font-size: 21px;
+	color: #C81141;
+}
+p.reg12pt {
+	font-size: 12px;
+}
+p.reg10pt {
+	font-size: 10px;
+}
+p.reg10ptred {
+	font-size: 10px;
+	color: #C81141;
+}
+div.regorangetitle {
+	background: #EFA628;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	color:#FFF;
+	font-size: 12px;
+	font-weight: bold
+}
+table.regtable {
+	margin-top: 5px;
+}
+td.regtitle {
+	width: 150px;
+	font-size: 12px;
+	text-align: right;
+	padding-right: 5px;
+	vertical-align: top;
+}
+td.regbox {
+	width:360px;
+	padding-bottom: 3px;
+	font-size: 12px;
+}
+table.regtable input {
+	border: 1px solid #000;
+	width: 360px;
+	height: 20px;
+}
+table.regtable textarea {
+	border: 1px solid #000;
+	width: 360px;
+}
+p.bold12pt {
+	font-size: 12px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+p.bold12ptred {
+	font-size: 12px;
+	margin-top: 10px;
+	font-weight: bold;
+	color: #CA1141
+}
+a.venuelink {
+	font-size: 10px;
+	color:#356996;
+	text-decoration:none
+}
+div.agendadate {
+	font-size: 14px;
+	font-style: italic;
+	font-weight: 700;
+	color: #C81141;
+	border-bottom: solid 1px #C81141;
+	padding-bottom: 3px;
+	width: 200px
+}
+div.agendatitle {
+	font-size: 12px;
+	font-weight: 700;
+	margin-top:15px;
+}
+table.tableevents {
+	margin-top:5px;
+	
+}
+td.num {
+	width: 50px;
+	font-size:12px;
+	vertical-align:top
+}
+td.events {
+	font-size:12px;
+}

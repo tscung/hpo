@@ -1,0 +1,6 @@
+<misc:setActionCommand pageVar="actionCommand"/>
+<misc:setActionExtension pageVar="ext"/>
+<misc:setModel pageVar="model"/>
+<c:set var="adminFolder" value="admin"/>
+<c:set var="iframeScrolling" value="auto"/>
+<c:set var="model" value="${requestScope.singleObject}"/>

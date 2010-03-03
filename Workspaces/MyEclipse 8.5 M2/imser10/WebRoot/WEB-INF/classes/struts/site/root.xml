@@ -1,0 +1,32 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="root" namespace="/" extends="stellarstudios-default">
+        <action name="*User" class="userAction" method="{1}">
+            <result name="home" type="redirectAction">restricted/getHome</result>
+            <result name="evaluationForm" type="chain">
+              <param name="namespace">/restricted</param>
+              <param name="actionName">preloadEvaluationFormUserRegistration</param>
+			  <param name="id">${userRegistrationId}</param>
+            </result>
+            
+            <result name="preloadRequestForPassword">/_requestForPassword.jsp</result>
+            <result name="preloadChangePassword">/_changePassword.jsp</result>
+            <result name="preloadLogin">/login.jsp</result>
+            <result name="logout" type="redirectAction">preloadLoginUser</result>
+        </action>
+        <action name="*UserRegistration" class="userRegistrationAction" method="{1}">
+            <result name="retrieveForEmail">/_retrieveForEmail.jsp</result>
+        </action>
+    </package>
+    <package name="rootAdmin" namespace="/admin" extends="stellarstudios-default">
+        <action name="*User" class="userAction" method="{1}">
+            <result name="home" type="redirectAction">userRegistrations/preloadSelectTemplateUserRegistration</result>
+            
+            <result name="preloadLogin">/admin/login.jsp</result>
+            <result name="logout" type="redirectAction">preloadLoginUser</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,5 @@
+<!-- jspf used to configure settings multipage tags.-->  
+<c:set var="resultsPerPage" value="${param.resultsPerPage}"/>
+<c:if test="${empty resultsPerPage}"><c:set var="resultsPerPage" value="50"/></c:if>
+<c:set var="currentPage" value="${param.currentPage}"/>
+<c:if test="${empty currentPage}"><c:set var="currentPage" value="0"/></c:if>

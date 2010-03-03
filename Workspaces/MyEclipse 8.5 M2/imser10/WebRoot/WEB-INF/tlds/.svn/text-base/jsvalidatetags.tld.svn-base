@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>jsvalidatetags</shortname>
+  <uri>http://pct/jsvalidatetags</uri>
+
+  <tag>
+    <name>printRequireIdentical</name>
+    <tagclass>sg.com.stellarstudios.imser.web.tag.jsvalidate.PrintRequireIdenticalTag</tagclass>
+    <info>Prints out javascript snippet for required identical validation.</info>
+    <attribute>
+      <name>field1</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>field2</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>    
+    <attribute>
+      <name>label</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>printRequireEnter</name>
+    <tagclass>sg.com.stellarstudios.imser.web.tag.jsvalidate.PrintRequireEnterTag</tagclass>
+    <info>Prints out javascript snippet for required enter validation.</info>
+    <attribute>
+      <name>field</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>label</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>printRequireTinyMCEEnter</name>
+    <tagclass>sg.com.stellarstudios.imser.web.tag.jsvalidate.PrintRequireTinyMCEEnterTag</tagclass>
+    <info>Prints out javascript snippet for required tiny mce enter validation.</info>
+    <attribute>
+      <name>label</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>  
+  <tag>
+    <name>printRequireSelect</name>
+    <tagclass>sg.com.stellarstudios.imser.web.tag.jsvalidate.PrintRequireSelectTag</tagclass>
+    <info>Prints out javascript snippet for required select validation.</info>
+    <attribute>
+      <name>field</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>label</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>printCheckDigitEnter</name>
+    <tagclass>sg.com.stellarstudios.imser.web.tag.jsvalidate.PrintCheckDigitEnterTag</tagclass>
+    <info>Prints out javascript snippet for check digit enter validation.</info>
+    <attribute>
+      <name>field</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>label</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>  
+</taglib>

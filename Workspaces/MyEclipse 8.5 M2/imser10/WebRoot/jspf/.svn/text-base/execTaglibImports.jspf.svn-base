@@ -1,0 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="un" uri="http://jakarta.apache.org/taglibs/unstandard-1.0"%>
+<%@taglib prefix="misc" uri="http://pct/misctags"%>
+<%@taglib prefix="jsvalidate" uri="http://pct/jsvalidatetags"%>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+
+<%@page errorPage="/errorpage.jsp"%>

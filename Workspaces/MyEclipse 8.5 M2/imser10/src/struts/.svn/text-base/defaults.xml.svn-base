@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+    <package name="stellarstudios-default">
+        <result-types>
+            <result-type name="chain" class="com.opensymphony.xwork2.ActionChainResult"/>
+            <result-type name="dispatcher" class="org.apache.struts2.dispatcher.ServletDispatcherResult" default="true"/>
+            <result-type name="freemarker" class="org.apache.struts2.views.freemarker.FreemarkerResult"/>
+            <result-type name="httpheader" class="org.apache.struts2.dispatcher.HttpHeaderResult"/>
+            <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletRedirectResult"/>
+            <result-type name="redirectAction" class="org.apache.struts2.dispatcher.ServletActionRedirectResult"/>
+            <result-type name="stream" class="org.apache.struts2.dispatcher.StreamResult"/>
+            <result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult"/>
+            <result-type name="xslt" class="org.apache.struts2.views.xslt.XSLTResult"/>
+            <result-type name="plainText" class="org.apache.struts2.dispatcher.PlainTextResult" />
+            <!-- Deprecated name form scheduled for removal in Struts 2.1.0. The camelCase versions are preferred. See ww-1707 -->
+            <result-type name="redirect-action" class="org.apache.struts2.dispatcher.ServletActionRedirectResult"/>
+            <result-type name="plaintext" class="org.apache.struts2.dispatcher.PlainTextResult" />
+        </result-types>
+
+        <interceptors>
+            <interceptor name="alias" class="com.opensymphony.xwork2.interceptor.AliasInterceptor"/>
+            <interceptor name="autowiring" class="com.opensymphony.xwork2.spring.interceptor.ActionAutowiringInterceptor"/>
+            <interceptor name="chain" class="com.opensymphony.xwork2.interceptor.ChainingInterceptor"/>
+            <interceptor name="conversionError" class="org.apache.struts2.interceptor.StrutsConversionErrorInterceptor"/>
+            <interceptor name="cookie" class="org.apache.struts2.interceptor.CookieInterceptor"/>
+            <interceptor name="createSession" class="org.apache.struts2.interceptor.CreateSessionInterceptor" />
+            <interceptor name="debugging" class="org.apache.struts2.interceptor.debugging.DebuggingInterceptor" />
+            <interceptor name="externalRef" class="com.opensymphony.xwork2.interceptor.ExternalReferencesInterceptor"/>
+            <interceptor name="execAndWait" class="org.apache.struts2.interceptor.ExecuteAndWaitInterceptor"/>
+            <interceptor name="exception" class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor"/>
+            <interceptor name="fileUpload" class="org.apache.struts2.interceptor.FileUploadInterceptor"/>
+            <interceptor name="i18n" class="com.opensymphony.xwork2.interceptor.I18nInterceptor"/>
+            <interceptor name="logger" class="com.opensymphony.xwork2.interceptor.LoggingInterceptor"/>
+            <interceptor name="modelDriven" class="com.opensymphony.xwork2.interceptor.ModelDrivenInterceptor"/>
+            <interceptor name="scopedModelDriven" class="com.opensymphony.xwork2.interceptor.ScopedModelDrivenInterceptor"/>
+            <interceptor name="params" class="com.opensymphony.xwork2.interceptor.ParametersInterceptor"/>
+            <interceptor name="prepare" class="com.opensymphony.xwork2.interceptor.PrepareInterceptor"/>
+            <interceptor name="staticParams" class="com.opensymphony.xwork2.interceptor.StaticParametersInterceptor"/>
+            <interceptor name="scope" class="org.apache.struts2.interceptor.ScopeInterceptor"/>
+            <interceptor name="servletConfig" class="org.apache.struts2.interceptor.ServletConfigInterceptor"/>
+            <interceptor name="sessionAutowiring" class="org.apache.struts2.spring.interceptor.SessionContextAutowiringInterceptor"/>
+            <interceptor name="timer" class="com.opensymphony.xwork2.interceptor.TimerInterceptor"/>
+            <interceptor name="token" class="org.apache.struts2.interceptor.TokenInterceptor"/>
+            <interceptor name="tokenSession" class="org.apache.struts2.interceptor.TokenSessionStoreInterceptor"/>
+            <interceptor name="validation" class="org.apache.struts2.interceptor.validation.AnnotationValidationInterceptor"/>
+            <interceptor name="workflow" class="com.opensymphony.xwork2.interceptor.DefaultWorkflowInterceptor"/>
+            <interceptor name="store" class="org.apache.struts2.interceptor.MessageStoreInterceptor" />
+            <interceptor name="checkbox" class="org.apache.struts2.interceptor.CheckboxInterceptor" />
+            <interceptor name="profiling" class="org.apache.struts2.interceptor.ProfilingActivationInterceptor" />
+            <interceptor name="roles" class="org.apache.struts2.interceptor.RolesInterceptor" />
+            <interceptor name="auth" class="sg.com.stellarstudios.imser.web.struts.interceptor.AuthInterceptor"/>
+            <interceptor name="pnp" class="sg.com.stellarstudios.imser.web.struts.interceptor.PnPInterceptor"/>
+            
+            <!-- ***************************** STACKS USED BY stellarstudios ***************************** -->
+            <interceptor-stack name="basicStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+            </interceptor-stack>
+
+            <interceptor-stack name="standardStack">
+            	<interceptor-ref name="timer"/>
+            	<interceptor-ref name="auth"/>
+                <interceptor-ref name="basicStack"/>
+            </interceptor-stack>   
+
+            <interceptor-stack name="standardValidationStack">
+            	<interceptor-ref name="timer"/>
+            	<interceptor-ref name="auth"/>
+                <interceptor-ref name="basicStack"/>
+                <interceptor-ref name="validation">
+                    <param name="includeMethods">create,update</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="includeMethods">create,update</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            
+            <interceptor-stack name="standardNonModelStack">
+            	<interceptor-ref name="timer"/>
+                <interceptor-ref name="basicStack"/>
+                <interceptor-ref name="validation">
+                    <param name="includeMethods">create,update</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="includeMethods">create,update</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            
+            <interceptor-stack name="wizardFormStack">
+            	<interceptor-ref name="timer"/>
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+            </interceptor-stack>
+            
+            <interceptor-stack name="embeddedFormStack">
+            	<interceptor-ref name="timer"/>
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+            </interceptor-stack>
+
+            <!-- Sample file upload stack -->
+            <interceptor-stack name="fileUploadStack">
+            	<interceptor-ref name="timer"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="basicStack"/>
+            </interceptor-stack>
+
+            <!-- ***************************** END STACKS USED BY stellarstudios ***************************** -->
+
+
+            <!-- A complete stack with all the common interceptors in place.
+                 Generally, this stack should be the one you use, though it
+                 may do more than you need. Also, the ordering can be
+                 switched around (ex: if you wish to have your servlet-related
+                 objects applied before prepare() is called, you'd need to move
+                 servlet-config interceptor up.
+
+                 This stack also excludes from the normal validation and workflow
+                 the method names input, back, and cancel. These typically are
+                 associated with requests that should not be validated.
+                 -->
+            <interceptor-stack name="completeStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="profiling"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="params">
+                	<param name="excludeParams">dojo\..*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <!-- Sample execute and wait stack.
+                 Note: execAndWait should always be the *last* interceptor. -->
+            <interceptor-stack name="executeAndWaitStack">
+                <interceptor-ref name="standardStack"/>
+                <interceptor-ref name="execAndWait">
+                    <param name="excludeMethods">input,back,cancel</param>
+                </interceptor-ref>
+            </interceptor-stack>
+       </interceptors>
+              
+       <default-interceptor-ref name="standardStack"/>
+       <!-- 
+       <global-results>
+            <result name="exception">/errorpage.jsp</result>
+       </global-results>
+       <global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+       </global-exception-mappings>-->
+    </package>
+</struts>

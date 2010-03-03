@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+#Thu Feb 25 02:41:47 SGT 2010
+sessionFactoryName=sg.com.stellarstudios.imser.entity.HibernateSessionFactory
+genBasicCompId=false
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=<no jars/zips in selected libraries>
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=sg.com.stellarstudios.imser.entity.BaseEntity
+genAnnotations=false
+reSettingsFile=
+configFile=/imser/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=true

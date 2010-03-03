@@ -1,0 +1,49 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="restricted" namespace="/restricted" extends="stellarstudios-default">
+    	<global-results>
+            <result name="preloadUpdateUserRegistrationChain" type="chain">
+              <param name="namespace">/restricted</param>
+              <param name="actionName">preloadUpdateUserRegistration</param>
+			  <param name="id">${userRegistrationId}</param>
+            </result>
+            <result name="preloadUpdateUserRegistrationRedirect" type="redirectAction">
+              <param name="namespace">/restricted</param>
+              <param name="actionName">preloadUpdateUserRegistration</param>
+			  <param name="id">${userRegistrationId}</param>
+            </result>
+    	</global-results>
+
+        <action name="*UserRegistration" class="userRegistrationAction" method="{1}">
+            <interceptor-ref name="standardStack"/>
+            <interceptor-ref name="validation"><param name="includeMethods">makeNew,saveOnly</param></interceptor-ref>
+            <interceptor-ref name="workflow"><param name="includeMethods">makeNew,saveOnly</param></interceptor-ref>
+
+            <result name="input" type="chain">preloadUpdateUserRegistration</result>
+            
+            <result name="preloadEvaluationForm">/restricted/evaluationForm.jsp</result>
+            <result name="preloadUpdate">/restricted/register.jsp</result>
+        </action>
+        <action name="updateEvaluationFormUserRegistration" class="userRegistrationAction" method="updateEvaluationForm">
+            <interceptor-ref name="standardStack"/>
+            <interceptor-ref name="validation"><param name="includeMethods">updateEvaluationForm</param></interceptor-ref>
+            <interceptor-ref name="workflow"><param name="includeMethods">updateEvaluationForm</param></interceptor-ref>
+
+            <result name="input" type="chain">preloadEvaluationFormUserRegistration</result>
+            <result name="updateEvaluationForm" type="chain">pnpHome</result>
+        </action>
+
+        <action name="get*">
+        	<interceptor-ref name="auth"/>
+            <result>/restricted/static/{1}.jsp</result>
+        </action>
+        <action name="pnp*">
+        	<interceptor-ref name="auth"/>
+        	<interceptor-ref name="pnp"/>
+            <result>/restricted/pnp/{1}.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,7 @@
+	<script language="JavaScript" src="<c:url value="/js/calendar/Cal_CalendarPopup.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" src="<c:url value="/js/calendar/Cal_AnchorPosition.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" src="<c:url value="/js/calendar/Cal_PopupWindow.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" src="<c:url value="/js/calendar/Cal_Date.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" type="text/javascript">
+		var cal = new CalendarPopup();
+	</script>

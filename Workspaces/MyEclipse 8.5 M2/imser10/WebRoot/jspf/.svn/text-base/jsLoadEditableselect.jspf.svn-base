@@ -1,0 +1,2 @@
+	<script language="JavaScript" src="<c:url value="/js/select/editableSelect.js"/>" type="text/javascript"></script>
+	<script language="JavaScript" src="<c:url value="/js/select/bodyShow.js"/>" type="text/javascript"></script>

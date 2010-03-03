@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DB"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DisplayTag"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DWR2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Etc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Freemarker"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JSTL"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/POI"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Quartz"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Struta209"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

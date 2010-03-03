@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<!-- ========================= TRANSACTION CONFIGURATION ======================== -->
+	<aop:config>
+		<!-- applies to all methods in service package -->
+		<aop:advisor pointcut="execution(* sg.com.stellarstudios.imser.service.*.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="create*" rollback-for="Exception"/>
+			<tx:method name="update*" rollback-for="Exception"/>
+			<tx:method name="delete*" rollback-for="Exception"/>
+			<!-- set every method to transactional so that there is a session bound to it -->
+			<tx:method name="*" propagation="SUPPORTS"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- ========================= SERVICE LAYER DEFINITIONS ========================= -->
+	<!-- HELPER CLASSES -->
+	<bean id="logHelper" class="sg.com.stellarstudios.imser.helper.LogHelper"/>
+	<bean id="httpHelper" class="sg.com.stellarstudios.imser.helper.HTTPHelper"/>
+	<bean id="excelHelper" class="sg.com.stellarstudios.imser.helper.ExcelHelper"/>
+	<bean id="serviceLocator" class="sg.com.stellarstudios.imser.common.ServiceLocator"><property name="logHelper" ref="logHelper"/></bean>
+	
+	<bean id="mailSender" class="sg.com.stellarstudios.imser.helper.MailSender">
+		<property name="host" value="${mail.host}"/>
+		<property name="username" value="${mail.username}"/>
+		<property name="password" value="${mail.password}"/>
+		<property name="emailFrom" value="${mail.from}"/>
+	</bean>
+	
+	<!-- Bean configured in emailHelper instead.
+	<bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="/templates/email/"/>
+	</bean> -->
+	<bean id="emailHelper" class="sg.com.stellarstudios.imser.helper.EmailHelper">
+		<property name="mailSender" ref="mailSender"/>
+		<property name="adminEmail" value="${mail.admin}"/>
+		<property name="templateLoaderPath" value="/emails/"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="httpHelper" ref="httpHelper"/>
+	</bean>
+
+	<!-- SCHEDULING -->
+	<!-- use clear currency cache to clear all cache.. -->
+	<bean id="clearLocalCacheDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="localCacheService" />
+		<property name="targetMethod" value="clearCaches" />
+	</bean>
+
+	<bean id="clearLocalCacheCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="clearLocalCacheDetail" /><property name="cronExpression" value="0 0 3 * * ?" />
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+		  <list>
+		    <ref bean="clearLocalCacheCronTrigger" />
+		  </list>
+		</property>
+	</bean>
+
+	<!-- SERVICE CLASSES -->
+	<bean id="baseService" class="sg.com.stellarstudios.imser.service.BaseService">
+		<property name="dao" ref="baseDao"/>
+		<property name="logHelper" ref="logHelper"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	<bean id="preloadDataService" class="sg.com.stellarstudios.imser.service.PreloadDataService" parent="baseService"/>
+	<bean id="userService" class="sg.com.stellarstudios.imser.service.UserService" parent="baseService">
+		<property name="dao" ref="userDao"/>
+		<property name="emailHelper" ref="emailHelper"/>
+	</bean>	
+	<bean id="userRegistrationService" class="sg.com.stellarstudios.imser.service.UserRegistrationService" parent="baseService">
+		<property name="dao" ref="userRegistrationDao"/>
+		<property name="emailHelper" ref="emailHelper"/>
+	</bean>
+
+	<!-- NON ENTITY SERVICES -->
+	<bean id="localCacheService" class="sg.com.stellarstudios.imser.service.LocalCacheService" parent="baseService"/>
+	<!-- does not inherit baseservice cos baseservice is coupled to config service. loop. dao also self instantiated -->
+	<bean id="configurationService" class="sg.com.stellarstudios.imser.service.ConfigurationService">
+		<property name="logHelper" ref="logHelper"/>
+		<property name="declarativeProperties">
+			<map>
+				<entry key="conf.appWebroot" value="${conf.appWebroot}"/>
+				<entry key="conf.appRoot" value="${conf.appRoot}"/>
+				<entry key="conf.authorizedModules" value="${conf.authorizedModules}"/>
+				<entry key="conf.authorizedModulesLabel" value="${conf.authorizedModulesLabel}"/>	
+				<entry key="conf.webAuthUrls" value="${conf.webAuthUrls}"/>		
+				<entry key="conf.webNoauthUrls" value="${conf.webNoauthUrls}"/>
+				<entry key="conf.webAdminFolder" value="${conf.webAdminFolder}"/>
+				<entry key="conf.adminNoAuthModules" value="${conf.adminNoAuthModules}"/>
+				<entry key="conf.userDefaultPassword" value="${conf.userDefaultPassword}"/>
+				<entry key="conf.f5StaffDefaultPassword" value="${conf.f5StaffDefaultPassword}"/>
+				<entry key="conf.privilegedUserDefaultPassword" value="${conf.privilegedUserDefaultPassword}"/>
+			</map>
+		</property>
+	</bean>
+</beans>

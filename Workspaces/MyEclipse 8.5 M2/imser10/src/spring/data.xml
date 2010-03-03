@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<!-- ========================= HIBERNATE DEFINITIONS ========================= -->
+  
+	<!-- Configurer that replaces ${...} placeholders with values from a properties file -->
+	<!-- (in this case, JDBC-related settings for the dataSource definition below) -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/WEB-INF/classes/spring/spring.properties"/>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${hibernate.driverClassName}"/>
+		<property name="url" value="${hibernate.url}"/>
+		<property name="username" value="${hibernate.username}"/>
+		<property name="password" value="${hibernate.password}"/>
+	</bean>
+	
+<!-- 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/nutritionpark" />
+	</bean>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${hibernate.driverClassName}"/>
+		<property name="jdbcUrl" value="${hibernate.url}"/>
+		<property name="user" value="${hibernate.username}"/>
+		<property name="password" value="${hibernate.password}"/>
+	</bean>
+ -->
+ 
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/sg/com/stellarstudios/imser/entity</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+				<!-- 
+				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop> 
+				<prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop> 
+				<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop> 
+				<prop key="hibernate.c3p0.acquireRetryAttempts">${hibernate.c3p0.acquireRetryAttempts}</prop> 
+				<prop key="hibernate.c3p0.acquireIncrement">${hibernate.c3p0.acquireIncrement}</prop> 
+				<prop key="hibernate.c3p0.idleConnectionTestPeriod">${hibernate.c3p0.idleConnectionTestPeriod}</prop> 
+				<prop key="hibernate.c3p0.initialPoolSize">${hibernate.c3p0.initialPoolSize}</prop> 
+				<prop key="hibernate.c3p0.maxPoolSize">${hibernate.c3p0.maxPoolSize}</prop> 
+				<prop key="hibernate.c3p0.maxIdleTime">${hibernate.c3p0.maxIdleTime}</prop> 
+				<prop key="hibernate.c3p0.maxStatements">${hibernate.c3p0.maxStatements}</prop> 
+				<prop key="hibernate.c3p0.minPoolSize">${hibernate.c3p0.minPoolSize}</prop>
+				 -->
+			</props>
+		</property>
+		<property name="entityCacheStrategies"> 
+			<props> 
+			     <prop key="sg.com.stellarstudios.imser.entity.Country">read-only</prop> 
+			 </props>
+		</property>
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+</beans>

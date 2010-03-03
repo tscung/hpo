@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<!-- ========================= WEB LAYER DEFINITIONS ========================= -->
+	
+	<!-- ENTITY ACTION CLASSES -->	
+	<bean id="baseAction" class="sg.com.stellarstudios.imser.web.struts.BaseAction" abstract="true" scope="prototype" init-method="init">
+		<property name="logHelper" ref="logHelper"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="preloadDataService" ref="preloadDataService"/>
+	</bean>		
+	<bean id="modelDrivenAction" class="sg.com.stellarstudios.imser.web.struts.ModelDrivenAction" scope="prototype" parent="baseAction">
+		<property name="service" ref="baseService"/>
+	</bean>	
+	
+	<bean id="userAction" class="sg.com.stellarstudios.imser.web.struts.action.UserAction" scope="prototype" parent="modelDrivenAction">
+		<property name="service" ref="userService"/>	
+		<property name="userRegistrationService" ref="userRegistrationService"/>	
+	</bean>		
+	<bean id="userRegistrationAction" class="sg.com.stellarstudios.imser.web.struts.action.UserRegistrationAction" scope="prototype" parent="modelDrivenAction">
+		<property name="service" ref="userRegistrationService"/>	
+		<property name="excelHelper" ref="excelHelper"/>
+	</bean>	
+</beans>

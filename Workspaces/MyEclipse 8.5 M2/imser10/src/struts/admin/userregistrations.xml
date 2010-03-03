@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="admin/userRegistrations" namespace="/admin/userRegistrations" extends="stellarstudios-default">
+        <action name="updateUserRegistration" class="userRegistrationAction" method="update">
+            <interceptor-ref name="standardValidationStack"/>
+            
+            <result name="input" type="chain">preloadUpdateUserRegistration</result>
+            <result name="update">/admin/userRegistrations/result.jsp</result>
+        </action>
+        <action name="*UserRegistration" class="userRegistrationAction" method="{1}">
+            <result name="preloadSelectTemplate">/admin/userRegistrations/selectTemplate.jsp</result>
+            <result name="preloadReminderEmail">/admin/userRegistrations/reminderEmail.jsp</result>
+            
+            <result name="preloadCreate">/admin/userRegistrations/createUpdate.jsp</result>
+            <result name="preloadUpdate">/admin/userRegistrations/createUpdate.jsp</result>
+            <result name="preloadSearch">/admin/userRegistrations/search.jsp</result>
+            <result name="retrieveAll">/admin/userRegistrations/listing.jsp</result>
+            <result name="delete">/admin/userRegistrations/result.jsp</result>
+            <result name="search">/admin/userRegistrations/listing.jsp</result>
+        </action>
+    </package>
+</struts>

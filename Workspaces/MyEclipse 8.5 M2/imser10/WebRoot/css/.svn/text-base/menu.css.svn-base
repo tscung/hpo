@@ -1,0 +1,20 @@
+div.sdmenu {
+	width: 150px;
+}
+div.sdmenu div {
+	overflow: hidden;
+}
+div.sdmenu div a {
+	display: block;
+}
+div.sdmenu div a.current {
+	/*background : #ccc;*/
+	font-weight: bold;
+}
+div.sdmenu div.collapsed {
+	height: 40px;
+}
+div.sdmenu div span#sdmenuspan {
+	display: block;
+	cursor: pointer;
+}

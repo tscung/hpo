@@ -1,0 +1,138 @@
+table {
+	font-size: 12px;
+	border: 0px;
+}
+tr { vertical-align: top; }
+.mainTable { width: 100%; }
+.indexTable { }
+.subTable { border: 1px solid #000; width: 100%; }
+.embeddedFrameTable { width: 100%; }
+.agendaleft { width: 4%; text-align: left;
+padding-left: 40px}
+.agendasub { font-family: Arial; width: 100%; vertical-align: top; font-size: 12px; }
+
+.columnImage { width: 20%; padding-left: 20px; }
+.content_table_main { margin-left: 15px; width: 95%; text-align: justify; }
+.content_table_main_kl { margin-left: 15px; width: 95%; text-align: justify; }
+.content_table_main_agenda { margin-left: 15px; width: 95%; text-align: justify; }
+.content_table { width: 100%; }
+.indentedRow { margin-left: 15px; width: 95%; text-align: justify; }
+.eventTable { width: 90%; text-align: justify; }
+.naviBar, .tableTopLeft {
+	background: #CA003A;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	vertical-align: top;
+	width: 241px; 
+}
+.naviBar {
+	text-align: left;
+	padding-left: 20px;
+}
+.headerRow {
+	background: #CA003A;
+	font-weight: bold;
+	color: white;
+}
+.login_table { padding: 20px 20px 20px 20px; }
+.table_header_row {
+	background-color: #CA003A;
+	font-style: italic;
+	color: #FFFFFF;
+}
+
+.table_header_row a { color: #EEE; }
+.table_header_row a:hover { color: #CCC; }
+.table_shade_alt0 { background-color: #fff; }
+.table_shade_alt1 { background-color: #fff; }
+.column_sn { width: 5%; }
+.column_actions {
+	background-color: #8f1b32;
+	font-style: italic;
+	color: #FFFFFF;
+	text-align: left;
+	width: 20%;
+}
+th {
+	padding: 0 0px 0 5px;
+	display: inline;
+	display: inline-block;
+	cursor: pointer;
+	background-color: #CA003A;
+	font-style: italic;
+	color: #FFFFFF;
+	text-align: left;
+}
+th.sortable {
+	background-image: url(/imser/images/arrow_off.png);
+	background-repeat: no-repeat;
+	background-position: 5px;
+}
+
+th.order1 {
+	background-image: url(/imser/images/arrow_down.png);
+	background-repeat: no-repeat;
+	background-position: 5px;
+}
+
+th.order2 {
+	background-image: url(/imser/images/arrow_up.png);
+	background-repeat: no-repeat;
+	background-position: 5px;
+}
+
+div.exportlinks {
+	background-color: #FFFFFF;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 10px 0;
+	text-align: right;
+}
+
+span.export {
+	padding: 0 4px 1px 20px;
+	display: inline;
+	display: inline-block;
+	cursor: pointer;
+}
+
+span.excel {
+	background-image: url(/imser/images/ico_file_excel.png);
+	background-repeat: no-repeat;
+}
+span.csv {
+	background-image: url(/imser/images/ico_file_csv.png);
+	background-repeat: no-repeat;
+}
+
+span.xml {
+	background-image: url(/imser/images/ico_file_xml.png);
+	background-repeat: no-repeat;
+}
+
+span.pdf {
+	background-image: url(/imser/images/ico_file_pdf.png);
+	background-repeat: no-repeat;
+}
+
+span.rtf {
+	background-image: url(/imser/images/ico_file_rtf.png);
+	background-repeat: no-repeat;
+}
+
+span.pagebanner {
+	background-color: #FFFFFF;
+	padding: 2px 4px 2px 4px;
+	width: 100%;
+	display: block;
+	border-bottom: none;
+}
+
+span.pagelinks {
+	background-color: #FFFFFF;
+	padding: 2px 4px 2px 4px;
+	width: 100%;
+	display: block;
+	text-align: right;
+	border-top: none;
+}

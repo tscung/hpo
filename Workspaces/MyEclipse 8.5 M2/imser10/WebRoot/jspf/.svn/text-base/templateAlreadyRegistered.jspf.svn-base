@@ -1,0 +1,17 @@
+
+	    <table class="content_table_main">
+	      <tr><td>&nbsp;</td></tr>
+	      <tr><td colspan="2" align="center">
+	        <span class="highlight">
+	          <c:choose>
+	            <c:when test="${model.approvedStatus == 2}">
+	              You have already submitted your registration on <misc:printDateTime property="model.dateSaved"/>.<br/>
+	              For changes, please contact the <a href="mailto:eventteam@hi5event.com">Hi-5 event organizer</a>.
+	            </c:when>
+	            <c:otherwise>
+	              <span class="success_register">Thank you for your registration.<br/>A confirmation email will be sent to you within 48 hrs.</span>
+	            </c:otherwise>
+	          </c:choose>
+	        </span>
+	      </td></tr>
+	   	</table>

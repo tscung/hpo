@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE validators PUBLIC
+      "-//OpenSymphony Group//XWork Validator 1.0//EN"
+      "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+  <field name="firstName">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="lastName">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="title">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="company">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="address1">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="user.email">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="city">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="country.id">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+  </field>
+  <field name="postalCode">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="phone">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="shirtSize">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="fromSingapore">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+  </field>
+  <!-- 
+  <field name="flightInfoArrivalAirline">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoArrivalFlightNo">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoArrivalDate">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+    <field-validator type="date"><message key="error.date"/></field-validator>
+  </field>
+  <field name="flightInfoArrivalTimeHour">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoArrivalTimeMinute">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoDepartureAirline">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoDepartureFlightNo">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoDepartureDate">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+    <field-validator type="date"><message key="error.date"/></field-validator>
+  </field>
+  <field name="flightInfoDepartureTimeHour">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>
+  <field name="flightInfoDepartureTimeMinute">
+    <field-validator type="requiredstring"><message key="error.requiredstring"/></field-validator>
+  </field>  
+  <field name="hotelCheckinDate">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+    <field-validator type="date"><message key="error.date"/></field-validator>
+  </field>
+  <field name="hotelCheckoutDate">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+    <field-validator type="date"><message key="error.date"/></field-validator>
+  </field>
+  <field name="hotelSmokingRoom">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+  </field>
+   -->
+  <field name="track">
+    <field-validator type="required"><message key="error.required"/></field-validator>
+  </field>
+</validators>
